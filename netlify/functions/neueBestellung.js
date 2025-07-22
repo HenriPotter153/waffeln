@@ -25,5 +25,12 @@ exports.handler = async function(event) {
   });
 
   fs.writeFileSync(filePath, JSON.stringify(arr, null, 2));
-  return { statusCode: 200, body: "Bestellung gespeichert" };
+  return {
+  statusCode: 200,
+  headers: {
+    "Access-Control-Allow-Origin": "*",       // Erlaubt Anfragen von allen Domains
+    "Access-Control-Allow-Headers": "Content-Type"  // Erlaubt JSON-Requests
+  },
+  body: "Bestellung gespeichert"
+};
 };
