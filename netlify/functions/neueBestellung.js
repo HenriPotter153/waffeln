@@ -7,7 +7,7 @@ exports.handler = async function(event) {
   }
 
   const body = JSON.parse(event.body);
-  const filePath = path.join(__dirname, "../../bestellungen.json");
+  const filePath = path.join(process.cwd(), "bestellungen.json");
   let arr = [];
 
   try {
