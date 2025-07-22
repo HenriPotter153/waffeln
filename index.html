@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Waffel-Bestellung</title>
+    <style>
+        body { font-family: sans-serif; padding: 2em; background-color: #f9f9f9; }
+        input, select, button { display: block; margin: 1em 0; padding: 0.5em; width: 300px; }
+        .status { margin-top: 1em; color: green; }
+    </style>
+</head>
+<body>
+    <h1>Waffel bestellen</h1>
+    <form id="bestellForm">
+        <label>Name: <input type="text" name="name" required></label>
+        <label>Menge (z. B. 1.5): <input type="number" name="menge" min="0.5" step="0.5" required></label>
+        <label>Puderzucker:
+            <select name="puderzucker">
+                <option value="Ja">Ja</option>
+                <option value="Nein">Nein</option>
+            </select>
+        </label>
+        <button type="submit">Bestellen</button>
+    </form>
+    <div class="status" id="status"></div>
+
+    <script>
+        document.getElementById("bestellForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const eintrag = {
+                name: form.name.value.trim(),
+                menge: parseFloat(form.menge.value),
+                puderzucker: form.puderzucker.value,
+                zeit: new Date().toISOString()
+            };
+
+            // Lokal im Browser speichern (ersatzweise für echten Server)
+            let bestellungen = JSON.parse(localStorage.getItem("bestellungen") || "[]");
+            bestellungen.push(eintrag);
+            localStorage.setItem("bestellungen", JSON.stringify(bestellungen));
+
+            document.getElementById("status").textContent = "Bestellung wurde gespeichert!";
+
+            form.reset();
+        });
+    </script>
+</body>
+</html>
