@@ -34,7 +34,7 @@
       puderzucker: form.puderzucker.value
     };
 
-    const res = await fetch("/.netlify/functions/neueBestellung", {
+    const res = await fetch("/.netlify/functions/neueBestellung.js", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
