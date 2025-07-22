@@ -1,3 +1,3 @@
 [build]
-  functions = "netlify/functions"  # Pfad zu deinen Netlify Functions
-  publish = "."                   # Root-Verzeichnis der Webseite
+  publish = "."                    # Root-Verzeichnis der Webseite
+  functions = "netlify/functions"  # Relativer Pfad zum Functions-Ordner
