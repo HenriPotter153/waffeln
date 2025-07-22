@@ -26,25 +26,25 @@
     <div class="status" id="status"></div>
 
     <script>
-        document.getElementById("bestellForm").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const eintrag = {
-                name: form.name.value.trim(),
-                menge: parseFloat(form.menge.value),
-                puderzucker: form.puderzucker.value,
-                zeit: new Date().toISOString()
-            };
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+    const body = {
+      name: form.name.value.trim(),
+      menge: parseFloat(form.menge.value),
+      puderzucker: form.puderzucker.value
+    };
 
-            // Lokal im Browser speichern (ersatzweise für echten Server)
-            let bestellungen = JSON.parse(localStorage.getItem("bestellungen") || "[]");
-            bestellungen.push(eintrag);
-            localStorage.setItem("bestellungen", JSON.stringify(bestellungen));
+    const res = await fetch("/.netlify/functions/neueBestellung", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
 
-            document.getElementById("status").textContent = "Bestellung wurde gespeichert!";
+    document.getElementById("status").textContent =
+      res.ok ? "Bestellung gespeichert!" : "Fehler beim Speichern";
+    form.reset();
+  });
+</script>
 
-            form.reset();
-        });
-    </script>
 </body>
 </html>
