@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -26,25 +25,25 @@
     <div class="status" id="status"></div>
 
     <script>
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-    const body = {
-      name: form.name.value.trim(),
-      menge: parseFloat(form.menge.value),
-      puderzucker: form.puderzucker.value
-    };
+        document.getElementById("bestellForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const eintrag = {
+                name: form.name.value.trim(),
+                menge: parseFloat(form.menge.value),
+                puderzucker: form.puderzucker.value,
+                zeit: new Date().toISOString()
+            };
 
-    const res = await fetch("/.netlify/functions/neueBestellung.js", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
+            // Lokal im Browser speichern (ersatzweise für echten Server)
+            let bestellungen = JSON.parse(localStorage.getItem("bestellungen") || "[]");
+            bestellungen.push(eintrag);
+            localStorage.setItem("bestellungen", JSON.stringify(bestellungen));
 
-    document.getElementById("status").textContent =
-      res.ok ? "Bestellung gespeichert!" : "Fehler beim Speichern";
-    form.reset();
-  });
-</script>
+            document.getElementById("status").textContent = "Bestellung wurde gespeichert!";
 
+            form.reset();
+        });
+    </script>
 </body>
 </html>
