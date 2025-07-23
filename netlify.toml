@@ -1,7 +1,0 @@
-[build]
-  publish = "."
-  functions = "netlify/functions"
-  command = "echo 'No build needed'"  # Dummy-Build-Befehl
-
-[functions]
-  node_bundler = "esbuild"  # Wichtig für Node.js-Functions
