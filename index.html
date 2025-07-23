@@ -25,25 +25,25 @@
     <div class="status" id="status"></div>
 
 <script>
-  form.addEventListener("submit", async function(e) {
+  document.getElementById("bestellForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     const body = {
-      name: form.name.value.trim(),
-      menge: parseFloat(form.menge.value),
-      puderzucker: form.puderzucker.value
+      name: this.name.value.trim(),
+      menge: parseFloat(this.menge.value),
+      puderzucker: this.puderzucker.value
     };
 
-    const res = await fetch("/.netlify/functions/neueBestellung", {
+    const res = await fetch("https://script.google.com/macros/s/AKfycbym1LZjF0pSKyT3CQjFrjPb3wnfPKVBaoNdsrdvKIGmyCHj1j6IdaGaTBteEn-5Xo8V/exec", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body)
     });
 
     document.getElementById("status").textContent =
-      res.ok ? "Bestellung gespeichert!" : "Fehler beim Speichern";
-    form.reset();
+      res.ok ? "Bestellung gespeichert!" : "Fehler beim Speichern.";
+    this.reset();
   });
 </script>
+
 
 </body>
 </html>
