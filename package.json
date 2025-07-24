@@ -1,0 +1,10 @@
+{
+  "name": "waffeln",
+  "version": "1.0.0",
+  "description": "Netlify Functions Projekt",
+  "main": "index.js",
+  "scripts": {},
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  }
+}
