@@ -4,7 +4,9 @@
   "description": "Netlify Functions Projekt",
   "type": "module",
   "main": "index.js",
-  "scripts": {},
+  "engines": {
+    "node": "18.x"
+  },
   "dependencies": {
     "node-fetch": "^3.3.0"
   }
