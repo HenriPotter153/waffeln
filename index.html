@@ -35,7 +35,7 @@
     };
 
     try {
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzqfgZgV9Atk_JRl_S88uS8GyMCVRmwg6axBxcdcLSI3rUBtJEPbsuyLm1BcNoXfsDjsA/exec", {
+      const res = await fetch("/.netlify/functions/neueBestellung", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
