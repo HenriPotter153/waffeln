@@ -9,7 +9,7 @@ exports.handler = async function(event) {
   }
 
   try {
-    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbzqfgZgV9Atk_JRl_S88uS8GyMCVRmwg6axBxcdcLSI3rUBtJEPbsuyLm1BcNoXfsDjsA/exec";
+    const googleScriptUrl = "https://script.google.com/macros/s/AKfycbwrPpuOb12tiEv_Kl218yMX8u_awfendWj9kvQ02cShnQKS-QS-0SXzAq9aalvNFergxg/exec";
 
     const response = await fetch(googleScriptUrl, {
       method: "POST",
