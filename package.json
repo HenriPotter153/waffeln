@@ -2,6 +2,7 @@
   "name": "waffeln",
   "version": "1.0.0",
   "description": "Netlify Functions Projekt",
+  "type": "module",
   "main": "index.js",
   "scripts": {},
   "dependencies": {
