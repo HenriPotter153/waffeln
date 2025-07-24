@@ -2,12 +2,11 @@
   "name": "waffeln",
   "version": "1.0.0",
   "description": "Netlify Functions Projekt",
-  "type": "module",
   "main": "index.js",
   "engines": {
     "node": "18.x"
   },
   "dependencies": {
-    "node-fetch": "^3.3.0"
+    "node-fetch": "^2.7.0"
   }
 }
