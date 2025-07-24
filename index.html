@@ -27,21 +27,32 @@
 <script>
   document.getElementById("bestellForm").addEventListener("submit", async function (e) {
     e.preventDefault();
+
     const body = {
       name: this.name.value.trim(),
       menge: parseFloat(this.menge.value),
       puderzucker: this.puderzucker.value
     };
 
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzaKRMBp5G8z2WlOdsJzryllw8xdBus95e2mYlTF-rFX1J0HhNZp_Euaqck5GphQDmY/exec", {
-      method: "POST",
-      body: JSON.stringify(body)
-    });
+    try {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzaKRMBp5G8z2WlOdsJzryllw8xdBus95e2mYlTF-rFX1J0HhNZp_Euaqck5GphQDmY/exec", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(body)
+      });
 
-    document.getElementById("status").textContent =
-      res.ok ? "Bestellung gespeichert!" : "Fehler beim Speichern.";
+      const antwort = await res.text();
+      document.getElementById("status").textContent =
+        res.ok ? `Bestellung gespeichert: ${antwort}` : `Fehler: ${antwort}`;
+    } catch (err) {
+      document.getElementById("status").textContent = "Fehler beim Senden: " + err;
+    }
+
     this.reset();
   });
 </script>
+
 </body>
 </html>
